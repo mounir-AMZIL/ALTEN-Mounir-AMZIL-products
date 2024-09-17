@@ -1,0 +1,35 @@
+<h1 class="text-center">Contact</h1>
+<div class="contact-form p-fluid">
+    <h2>Contactez-nous</h2>
+    
+    <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+      <div class="p-field">
+        <label for="email">Email</label>
+       <input type="email" pInputText formControlName="email" />
+        <p-messages *ngIf="email?.invalid && email?.touched" severity="error" [(value)]="invalidEmail">
+        </p-messages>
+      </div>
+      
+      <div class="p-field">
+        <label for="message">Message</label>
+        <textarea 
+        rows="5" 
+        cols="30" 
+        pInputTextarea 
+        formControlName="message">
+    </textarea>
+        <p-messages *ngIf="message?.invalid && message?.touched" severity="error" [(value)]="invalidMessage">
+        </p-messages>
+
+
+      </div>
+     <div>
+     
+     </div> 
+      <p-button type="submit" label="Envoyer" [disabled]="contactForm.invalid"></p-button>
+      
+      <p-messages *ngIf="isSubmitted && contactForm.valid" severity="success" [(value)]="success">
+      </p-messages>
+    </form>
+  </div>
+  

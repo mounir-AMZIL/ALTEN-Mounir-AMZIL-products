@@ -1,0 +1,42 @@
+<h1 class="text-center">Panier</h1>
+<p-dataView #dv [value]="cartItems" [rows]="12" [paginator]="true">
+    <ng-template pTemplate="list" let-products>
+        <div class="grid grid-nogutter">
+            <div *ngFor="let cart of cartItems" class="sm-12 md-3 lg-2" >
+                <div class="grid grid">
+                    <p-card class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-1">
+                        <div class="md:w-10rem relative">
+                            <img class="block xl:block mx-auto border-round w-full"
+                                [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + cart.product.image"
+                                [alt]="cart.product.name" />
+                            <p-badge [value]="cart.product.inventoryStatus"
+                                [severity]="getBadgeSeverity(cart.product.inventoryStatus)" class="absolute"
+                                [style.left.px]="4" [style.top.px]="4" />
+                        </div>
+                        <span class="font-medium text-secondary text-sm">{{ cart.product.category }}</span>
+                        <div class="text-lg font-medium text-900 mt-2">{{ cart.product.name }}</div>
+                        <div class="text-sm font-medium text-600 mt-2">{{ cart.product.description }}</div>
+                        <div class="text-lg font-medium text-900 mt-2">
+                            Price : <p-tag severity="warning" value="{{cart.product.price | currency:'USD'}}" />
+                        </div>
+
+                        <div class="text-lg font-medium text-900 mt-2">
+                            Rating : <p-rating [(ngModel)]="cart.product.rating" [readonly]="true" stars="5"
+                                cancel="false"></p-rating>
+                        </div>
+                        <div class="quantity-controls">
+                            <button pButton type="button" icon="pi pi-minus" (click)="decreaseQuantity(cart)" severity="warning" ></button>
+                            <p-badge  value="{{ cart.quantity }}" class="custom-badge" severity="info"></p-badge>
+                            <button pButton type="button" icon="pi pi-plus" (click)="increaseQuantity(cart)" severity="secondary"></button>
+                        </div>
+                        <ng-template pTemplate="footer">
+                            <div class="flex gap-3 mt-1">
+                                <p-button label="Supprimer" severity="danger" (onClick)="onDelete(cart.product)" />
+                            </div>
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>

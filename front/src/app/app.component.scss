@@ -1,0 +1,20 @@
+.app-content {
+    overflow: hidden;
+    height: 100%;
+}
+.cart-icon-wrapper {
+    position: relative;  
+    display: inline-block;
+  }
+  
+  .cart-badge {
+    position: absolute;
+    top: -15px;  
+    right: -10px;
+    font-size: 1rem; 
+    padding: 0.4rem;
+    border-radius: 50%;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

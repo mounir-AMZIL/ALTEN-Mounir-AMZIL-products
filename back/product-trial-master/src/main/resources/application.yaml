@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: product-trial-master
+logging:
+  level:
+    org.springframework.web: DEBUG
